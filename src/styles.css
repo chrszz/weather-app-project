@@ -1,0 +1,124 @@
+body {
+  font-family: "Work Sans", sans-serif;
+  max-width: 530px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 45px;
+  font-weight: bold;
+  color: #fff;
+}
+h2 {
+  font-size: 120px;
+  font-weight: bold;
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.5px;
+}
+
+h6 {
+  color: #fff;
+}
+form {
+  margin: 35px 0;
+  max-width: 900px;
+}
+a {
+  text-decoration: none;
+}
+
+.container {
+  margin: 20px;
+  padding: 30px;
+  background-color: #141414;
+  border: solid 1px #141414;
+  border-radius: 30px;
+}
+.row {
+  font-size: 16px;
+  font-weight: 250;
+}
+.up {
+  margin-top: 40px;
+}
+.foot {
+  margin-top: 15px;
+}
+.other {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.weathericon {
+  width: 35px;
+  margin: o auto;
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+.hot {
+  font-weight: 500;
+}
+.card {
+  border: solid 1px transparent;
+  background-color: transparent;
+  display: block;
+  text-align: center;
+  transition: all 200ms ease-in-out;
+  color: #fff;
+}
+.card:hover {
+  border: solid 1px #181818;
+  background-color: #181818;
+}
+.card-title {
+  font-weight: 200;
+}
+.main-icon {
+  display: block;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+
+#current-day,
+#current-month {
+  color: #fff;
+  position: relative;
+  top: 13px;
+}
+.description {
+  color: #fff;
+  position: relative;
+  top: 28px;
+  line-height: 18px;
+}
+
+.about-weather {
+  font-weight: 500;
+}
+.line {
+  color: #fff;
+  margin-top: 0;
+}
+.btn,
+.current-btn {
+  background-color: #fff;
+  color: #141414;
+  padding: 6px 22px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  transition: all 200ms ease-in-out;
+}
+.btn:hover,
+.current-btn:hover {
+  background-color: transparent;
+  color: #fff;
+}
+.search {
+  background-color: transparent;
+  color: #fff;
+  width: 100%;
+  border: 1px solid #fff;
+  padding: 7.5px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+}
