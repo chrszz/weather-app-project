@@ -122,3 +122,8 @@ a {
   border-radius: 10px;
   font-size: 15px;
 }
+.footer-link {
+  text-align: center;
+  font-weight: 400;
+  font-size: 13px;
+}
