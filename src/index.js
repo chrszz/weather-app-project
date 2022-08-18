@@ -64,7 +64,7 @@ newCity.addEventListener("submit", city, showTemp);
 // show T in searched city
 
 function showTemp(response) {
-  //console.log(response.data);
+  // console.log(response.data);
   let h2 = document.querySelector("h2");
   let temperature = Math.round(response.data.main.temp);
   h2.innerHTML = temperature + "°";
@@ -77,6 +77,11 @@ function showTemp(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed * 3.6
+  );
+  let icon = document.querySelector(".main-icon");
+  icon.src = icon.src.replace(
+    "icon.png",
+    `${response.data.weather[0].icon}.png`
   );
 }
 
@@ -112,6 +117,11 @@ function showTempCurrent(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed * 3.6
+  );
+  let icon = document.querySelector(".main-icon");
+  icon.src = icon.src.replace(
+    "icon.png",
+    `${response.data.weather[0].icon}.png`
   );
 }
 
