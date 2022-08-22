@@ -25,6 +25,10 @@ form {
 }
 a {
   text-decoration: none;
+  color: #b9b9b9;
+}
+a:hover {
+  color: #767676;
 }
 
 .container {

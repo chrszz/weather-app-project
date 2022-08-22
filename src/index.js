@@ -49,19 +49,19 @@ function showDate() {
 let currentDate = document.querySelector("#current-month");
 currentDate.innerHTML = showDate();
 
-//
-
 function city(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
   let h1 = document.querySelector("h1");
   h1.innerHTML = cityInput.value;
+  showTempCurrent(cityInput.value);
 }
 
 let newCity = document.querySelector(".search-form");
-newCity.addEventListener("submit", city, showTemp);
+newCity.addEventListener("submit", city);
 
 // show T in searched city
+let cTemp = null;
 
 function showTemp(response) {
   // console.log(response.data);
@@ -79,11 +79,23 @@ function showTemp(response) {
     response.data.wind.speed * 3.6
   );
   let icon = document.querySelector(".main-icon");
-  icon.src = icon.src.replace(
-    "icon.png",
-    `${response.data.weather[0].icon}.png`
-  );
+  icon.setAttribute("src", `./img/${response.data.weather[0].icon}.png`);
+
+  cTemp = Math.round(response.data.main.temp);
 }
+
+// C/F temp
+
+function convertF(event) {
+  event.preventDefault();
+  let fTemp = Math.round((cTemp * 9) / 5 + 32);
+  let convTemp = document.querySelector(".conv-temp");
+  convTemp.innerHTML = fTemp + "°";
+}
+let fLink = document.querySelector("#ftemp");
+fLink.addEventListener("click", convertF);
+
+//
 
 function searchCity() {
   let sCity = document.querySelector("#city-input");
@@ -118,7 +130,7 @@ function showTempCurrent(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed * 3.6
   );
-  let icon = document.querySelector(".main-icon");
+  let icon = document.querySelectorAll(".main-icon");
   icon.src = icon.src.replace(
     "icon.png",
     `${response.data.weather[0].icon}.png`
