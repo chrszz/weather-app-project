@@ -66,8 +66,16 @@ function convertF(event) {
   let convTemp = document.querySelector(".conv-temp");
   convTemp.innerHTML = Math.round(fTemp);
 }
+function convertC(event) {
+  event.preventDefault();
+  let convTemp = document.querySelector(".conv-temp");
+  convTemp.innerHTML = Math.round(cTemp);
+}
 let fLink = document.querySelector("#ftemp");
 fLink.addEventListener("click", convertF);
+
+let cLink = document.querySelector("#ctemp");
+cLink.addEventListener("click", convertC);
 
 let cTemp = null;
 
@@ -75,9 +83,9 @@ let cTemp = null;
 
 function showTemp(response) {
   // console.log(response.data);
-  let h2 = document.querySelector("h2");
+  let h2 = document.querySelector(".conv-temp");
   let temperature = Math.round(response.data.main.temp);
-  h2.innerHTML = temperature + "°";
+  h2.innerHTML = temperature;
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
   document.querySelector(".about-weather").innerHTML =
