@@ -22,8 +22,6 @@ function showDay() {
   let today = day + " " + hours + ":" + minutes;
   return today;
 }
-let currentDay = document.querySelector("#current-day");
-currentDay.innerHTML = showDay();
 
 //
 function showDate() {
@@ -46,8 +44,6 @@ function showDate() {
   let today = month + ", " + date;
   return today;
 }
-let currentDate = document.querySelector("#current-month");
-currentDate.innerHTML = showDate();
 
 function city(event) {
   event.preventDefault();
@@ -77,9 +73,16 @@ fLink.addEventListener("click", convertF);
 let cLink = document.querySelector("#ctemp");
 cLink.addEventListener("click", convertC);
 
+//
+
 let cTemp = null;
 
-//
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "32e54888351435f0f34bb679ab4aac3a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showForecast);
+}
 
 function showTemp(response) {
   // console.log(response.data);
@@ -100,7 +103,14 @@ function showTemp(response) {
   let icon = document.querySelector(".main-icon");
   icon.setAttribute("src", `./img/${response.data.weather[0].icon}.png`);
 
+  let currentDay = document.querySelector("#current-day");
+  currentDay.innerHTML = showDay();
+  let currentDate = document.querySelector("#current-month");
+  currentDate.innerHTML = showDate();
+
   cTemp = response.data.main.temp;
+
+  getForecast(response.data.coord);
 }
 
 //
@@ -138,3 +148,31 @@ function getCurrentLocation(event) {
 
 let currentBtn = document.querySelector(".current-btn");
 currentBtn.addEventListener("click", getCurrentLocation);
+
+//
+
+function showForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["FRI", "SAT", "SUN", "MON"];
+
+  let forecastHTML = `<div class="row forecast">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `   <div class="col-3">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">${day}</h6>
+                <img src="img/icon.png" class="weathericon" />
+                <p class="card-text">
+                  <span class="hot">28°C</span> <br />
+                  <span class="cold">11°C</span>
+                </p>
+              </div>
+            </div>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
