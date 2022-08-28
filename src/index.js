@@ -48,7 +48,18 @@ function showDate() {
 function city(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
-  showTemp(cityInput.value);
+  searchCity(cityInput.value);
+}
+
+function searchCity(city) {
+  let apiKey = "32e54888351435f0f34bb679ab4aac3a";
+  let apiUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    city +
+    "&appid=" +
+    apiKey +
+    "&units=metric";
+  axios.get(apiUrl).then(showTemp);
 }
 
 let newCity = document.querySelector(".search-form");
@@ -113,24 +124,6 @@ function showTemp(response) {
   getForecast(response.data.coord);
 }
 
-//
-
-function searchCity() {
-  let sCity = document.querySelector("#city-input");
-  let apiKey = "32e54888351435f0f34bb679ab4aac3a";
-  let apiUrl =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
-    sCity.value +
-    "&appid=" +
-    apiKey +
-    "&units=metric";
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = sCity.value;
-  axios.get(apiUrl).then(showTemp);
-}
-
-newCity.addEventListener("submit", searchCity);
-
 //current position
 
 function showPosition(position) {
@@ -176,3 +169,5 @@ function showForecast(response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
+searchCity("Kyiv");
