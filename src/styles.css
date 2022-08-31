@@ -62,6 +62,9 @@ a:hover {
 .hot {
   font-weight: 500;
 }
+.cold {
+  opacity: 0.6;
+}
 .card {
   border: solid 1px transparent;
   background-color: transparent;
