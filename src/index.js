@@ -147,7 +147,7 @@ function showForecast(response) {
                 <p class="card-text">
                   <span class="hot">${Math.round(
                     forecastDay.temp.max
-                  )}°</span> <span class="cold">${Math.round(
+                  )}°</span> <span class="cold">↓${Math.round(
           forecastDay.temp.min
         )}°</span>
                 </p>
