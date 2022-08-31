@@ -65,28 +65,7 @@ function searchCity(city) {
 let newCity = document.querySelector(".search-form");
 newCity.addEventListener("submit", city);
 
-// C/F temp
-
-function convertF(event) {
-  event.preventDefault();
-  let fTemp = (cTemp * 9) / 5 + 32;
-  let convTemp = document.querySelector(".conv-temp");
-  convTemp.innerHTML = Math.round(fTemp);
-}
-function convertC(event) {
-  event.preventDefault();
-  let convTemp = document.querySelector(".conv-temp");
-  convTemp.innerHTML = Math.round(cTemp);
-}
-let fLink = document.querySelector("#ftemp");
-fLink.addEventListener("click", convertF);
-
-let cLink = document.querySelector("#ctemp");
-cLink.addEventListener("click", convertC);
-
 //
-
-let cTemp = null;
 
 function getForecast(coordinates) {
   console.log(coordinates);
@@ -119,8 +98,6 @@ function showTemp(response) {
   let currentDate = document.querySelector("#current-month");
   currentDate.innerHTML = showDate();
 
-  cTemp = response.data.main.temp;
-
   getForecast(response.data.coord);
 }
 
@@ -143,6 +120,7 @@ let currentBtn = document.querySelector(".current-btn");
 currentBtn.addEventListener("click", getCurrentLocation);
 
 //
+
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
