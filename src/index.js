@@ -143,28 +143,41 @@ let currentBtn = document.querySelector(".current-btn");
 currentBtn.addEventListener("click", getCurrentLocation);
 
 //
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  return days[day];
+}
 
 function showForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["FRI", "SAT", "SUN", "MON"];
 
   let forecastHTML = `<div class="row forecast">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `   <div class="col-3">
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 4) {
+      forecastHTML =
+        forecastHTML +
+        `   <div class="col-3">
             <div class="card">
               <div class="card-body">
-                <h6 class="card-title">${day}</h6>
-                <img src="img/icon.png" class="weathericon" />
+                <h6 class="card-title">${formatDay(forecastDay.dt)}</h6>
+                <img src="./img/${
+                  forecastDay.weather[0].icon
+                }.png" class="weathericon" />
                 <p class="card-text">
-                  <span class="hot">28°C</span> <br />
-                  <span class="cold">11°C</span>
+                  <span class="hot">${Math.round(
+                    forecastDay.temp.max
+                  )}°C</span> <br />
+                  <span class="cold">${Math.round(
+                    forecastDay.temp.min
+                  )}°C</span>
                 </p>
               </div>
             </div>
           </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
